@@ -16,6 +16,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { AppSandbox } from './app.sandbox';
+import { AppApiClientService } from './app-api-client.service';
+import { AppAdapter } from './app.adapter';
+import { DummyEffects } from './shared/store/effects/dummy.effects';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -55,7 +58,7 @@ import { AppSandbox } from './app.sandbox';
 		/**
 		 * Effect Modules that are loaded when application starts
 		 */
-		EffectsModule.forRoot([NetworkEffects]),
+		EffectsModule.forRoot([NetworkEffects, DummyEffects]),
 
 		/**
 		 * Core module contains providers for the singleton services you
@@ -67,7 +70,7 @@ import { AppSandbox } from './app.sandbox';
 		CoreModule,
 		SharedModule,
 	],
-	providers: [AppSandbox],
+	providers: [AppSandbox, AppApiClientService, AppAdapter],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

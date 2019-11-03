@@ -2,7 +2,7 @@ export const environment = {
 	production: true,
 
 	api: {
-		baseUrl: '',
+		baseUrl: 'http://dummy.restapiexample.com/api/v1',
 	},
 
 	json: {},

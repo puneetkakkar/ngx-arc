@@ -116,7 +116,7 @@ export function Produces(producesDef: MediaType) {
  * Defines the adatper function to modify the API response suitable for the app
  * @param TFunction adapterFn - function to be called
  */
-export function Adapter(adapterFn: () => void) {
+export function Adapter(adapterFn: (...args: any[]) => any) {
 	return (target: HttpService, propertyKey: string, descriptor: any) => {
 		descriptor.adapter = adapterFn || null;
 		return descriptor;
