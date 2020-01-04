@@ -1,85 +1,58 @@
-import { Action } from '@ngrx/store';
-import * as dummyActions from '../actions/dummy.actions';
+import { Action, createReducer, on } from '@ngrx/store';
+import { dummyDataFail, dummyDataSuccess, loadDummyData } from '../actions/dummy.actions';
 
 export interface DummyState {
-	dummyEmployees: {
-		loading: boolean;
-		loaded: boolean;
-		failed: boolean;
-		response: object;
-	};
+  dummyEmployees: {
+    loading: boolean;
+    data: object;
+    error: object;
+  };
 }
 
-export const initialState: DummyState = {
-	dummyEmployees: {
-		loading: false,
-		loaded: false,
-		failed: false,
-		response: undefined,
-	},
+const initialState: DummyState = {
+  dummyEmployees: {
+    loading: false,
+    data: undefined,
+    error: undefined,
+  },
 };
 
-export function reducer(state = initialState, action: Action): DummyState {
-	switch (action.type) {
-		case dummyActions.DummyActionTypes.LoadDummyData: {
-			return {
-				...state,
-				dummyEmployees: {
-					...state.dummyEmployees,
-					loading: true,
-				},
-			};
-		}
+const loadDummyDataReducerMap = (state: DummyState) => ({
+  ...state,
+  dummyEmployees: {
+    ...state.dummyEmployees,
+    loading: true,
+  },
+});
 
-		case dummyActions.DummyActionTypes.DummyDataSuccess: {
-			return handleDummyDataSuccess(
-				state,
-				action as dummyActions.DummyDataSuccess
-			);
-		}
+const dummyDataSuccessReducerMap = (state: DummyState, { payload }) =>
+  handleDummyDataSuccess(state, payload);
 
-		case dummyActions.DummyActionTypes.DummyDataFail: {
-			return {
-				...state,
-				dummyEmployees: {
-					...state.dummyEmployees,
-					loading: false,
-					failed: true,
-				},
-			};
-		}
+const dummyDataFailReducerMap = (state: DummyState, { payload }) => ({
+  ...state,
+  dummyEmployees: {
+    ...state.dummyEmployees,
+    loading: false,
+    error: payload,
+  },
+});
 
-		default:
-			return state;
-	}
+const handleDummyDataSuccess = (state: DummyState, payload: object): DummyState => ({
+  ...state,
+  dummyEmployees: {
+    ...state.dummyEmployees,
+    loading: false,
+    data: payload,
+  },
+});
+
+const dummyReducerMap = createReducer(
+  initialState,
+  on(loadDummyData, loadDummyDataReducerMap),
+  on(dummyDataSuccess, dummyDataSuccessReducerMap),
+  on(dummyDataFail, dummyDataFailReducerMap),
+);
+
+export function dummyReducer(state: DummyState, action: Action) {
+  return dummyReducerMap(state, action);
 }
-
-function handleDummyDataSuccess(
-	state: DummyState,
-	action: dummyActions.DummyDataSuccess
-): DummyState {
-	return {
-		...state,
-		dummyEmployees: {
-			...state.dummyEmployees,
-			loaded: true,
-			response: action.payload,
-		},
-	};
-}
-
-/**
- * This function gets Dummy API response from module state
- * @param state Dummy State
- * @returns response state
- */
-export const dummyEmployeesSuccess = (state: DummyState) =>
-	state.dummyEmployees.response;
-
-/**
- * This function gets Dummy Employees API failed response
- * @param state Dummy State
- * @returns failed response
- */
-export const dummyEmployeesFailed = (state: DummyState) =>
-	state.dummyEmployees.failed;

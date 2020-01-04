@@ -1,33 +1,23 @@
-import { Action } from '@ngrx/store';
-import * as networkActions from '../actions/network.actions';
+import { Action, createReducer, on } from '@ngrx/store';
+import { setIsOnline } from '../actions/network.actions';
 
 export interface NetworkState {
-	isOnline: boolean;
+  isOnline: boolean;
 }
 
-export const initialState: NetworkState = {
-	isOnline: navigator.onLine,
+const initialState: NetworkState = {
+  isOnline: navigator.onLine,
 };
 
-export function reducer(
-	state: NetworkState = initialState,
-	action: Action
-): NetworkState {
-	if (action.type === networkActions.NetworkActionTypes.SetIsOnline) {
-		return handleIsOnline(state, action as networkActions.SetIsOnline);
-	} else {
-		return state;
-	}
-}
+const setIsOnlineReducerMap = (state: NetworkState, { payload }) => handleIsOnline(state, payload);
 
-function handleIsOnline(
-	state: NetworkState,
-	action: networkActions.SetIsOnline
-): NetworkState {
-	return {
-		...state,
-		isOnline: action.payload,
-	};
-}
+const handleIsOnline = (state: NetworkState, payload: boolean): NetworkState => ({
+  ...state,
+  isOnline: payload,
+});
 
-export const getIsOnline = (state: NetworkState) => state.isOnline;
+const networkReducerMap = createReducer(initialState, on(setIsOnline, setIsOnlineReducerMap));
+
+export function networkReducer(state: NetworkState, action: Action) {
+  return networkReducerMap(state, action);
+}

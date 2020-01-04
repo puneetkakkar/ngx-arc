@@ -1,18 +1,8 @@
-import { Action } from '@ngrx/store';
+import { createAction } from '@ngrx/store';
+import { NetworkActionTypes } from '../constants/network.constants';
 
-export enum NetworkActionTypes {
-	StartOnlineOfflineCheck = '[Network] StartOnlineOfflineCheck',
-	SetIsOnline = '[Network] SetIsOnline',
-}
+export const startOnlineOfflineCheck = createAction(NetworkActionTypes.StartOnlineOfflineCheck);
 
-export class StartOnlineOfflineCheck implements Action {
-	readonly type = NetworkActionTypes.StartOnlineOfflineCheck;
-}
-
-export class SetIsOnline implements Action {
-	readonly type = NetworkActionTypes.SetIsOnline;
-
-	constructor(public payload: boolean) {}
-}
-
-export type NetworkActions = StartOnlineOfflineCheck | SetIsOnline;
+export const setIsOnline = createAction(NetworkActionTypes.SetIsOnline, (payload: boolean) => ({
+  payload,
+}));

@@ -2,13 +2,13 @@ import { methodBuilder, paramBuilder } from './http-utils.service';
 import { HttpService, MediaType } from './http.service';
 
 const enum RequestMethod {
-	GET = 'GET',
-	POST = 'POST',
-	PUT = 'PUT',
-	DELETE = 'DELETE',
-	OPTIONS = 'OPTIONS',
-	HEAD = 'HEAD',
-	PATCH = 'PATCH',
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+  OPTIONS = 'OPTIONS',
+  HEAD = 'HEAD',
+  PATCH = 'PATCH',
 }
 
 /* *********************************************
@@ -20,12 +20,10 @@ const enum RequestMethod {
  * @param String url - base URL
  */
 export function BaseUrl(url: string) {
-	return <TFunction extends { new (...args: any[]) }>(
-		Target: TFunction
-	): TFunction => {
-		Target.prototype.getBaseUrl = () => url;
-		return Target;
-	};
+  return <TFunction extends { new (...args: any[]) }>(Target: TFunction): TFunction => {
+    Target.prototype.getBaseUrl = () => url;
+    return Target;
+  };
 }
 
 /**
@@ -33,12 +31,10 @@ export function BaseUrl(url: string) {
  * @param Object headers - deafult headers in a key-value pair
  */
 export function DefaultHeaders(headers: any) {
-	return <TFunction extends { new (...args: any[]) }>(
-		Target: TFunction
-	): TFunction => {
-		Target.prototype.getDefaultHeaders = () => headers;
-		return Target;
-	};
+  return <TFunction extends { new (...args: any[]) }>(Target: TFunction): TFunction => {
+    Target.prototype.getDefaultHeaders = () => headers;
+    return Target;
+  };
 }
 
 /* *********************************************
@@ -81,23 +77,21 @@ export let PATCH = methodBuilder(RequestMethod.PATCH);
  * @param Object headersDef - custom headers in a key-value pair
  */
 export function Headers(headersDef: any) {
-	return (target: HttpService, propertyKey: string, descriptor: any) => {
-		descriptor.headers = headersDef;
-		return descriptor;
-	};
+  return (target: HttpService, propertyKey: string, descriptor: any) => {
+    descriptor.headers = headersDef;
+    return descriptor;
+  };
 }
 
 /**
  * Set custom response type for a REST method
  * @param "arraybuffer" | "blob" | "json" | "text" responseType
  */
-export function ResponseType(
-	responseType: 'arraybuffer' | 'blob' | 'json' | 'text'
-) {
-	return (target: HttpService, propertyKey: string, descriptor: any) => {
-		descriptor.responseType = responseType;
-		return descriptor;
-	};
+export function ResponseType(responseType: 'arraybuffer' | 'blob' | 'json' | 'text') {
+  return (target: HttpService, propertyKey: string, descriptor: any) => {
+    descriptor.responseType = responseType;
+    return descriptor;
+  };
 }
 
 /**
@@ -105,11 +99,11 @@ export function ResponseType(
  * @param MediaType producesDef - MediaType to be sent
  */
 export function Produces(producesDef: MediaType) {
-	return (target: HttpService, propertyKey: string, descriptor: any) => {
-		descriptor.isJSON = producesDef === MediaType.JSON;
-		descriptor.isFormData = producesDef === MediaType.FORM_DATA;
-		return descriptor;
-	};
+  return (target: HttpService, propertyKey: string, descriptor: any) => {
+    descriptor.isJSON = producesDef === MediaType.JSON;
+    descriptor.isFormData = producesDef === MediaType.FORM_DATA;
+    return descriptor;
+  };
 }
 
 /**
@@ -117,10 +111,10 @@ export function Produces(producesDef: MediaType) {
  * @param TFunction adapterFn - function to be called
  */
 export function Adapter(adapterFn: (...args: any[]) => any) {
-	return (target: HttpService, propertyKey: string, descriptor: any) => {
-		descriptor.adapter = adapterFn || null;
-		return descriptor;
-	};
+  return (target: HttpService, propertyKey: string, descriptor: any) => {
+    descriptor.adapter = adapterFn || null;
+    return descriptor;
+  };
 }
 
 /* *********************************************

@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "format:fix": "pretty-quick --staged",
+    "format:fix": "prettier --write '{src,e2e}/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
     "remove:dist": "rimraf dist",
     "build:prod": "npm run remove:dist && npm run -- build --configuration production",
     "build:stage": "npm run remove:dist && npm run -- build --configuration staging",
@@ -38,7 +38,7 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.16",
+    "@angular-devkit/build-angular": "^0.803.21",
     "@angular/cli": "~8.3.16",
     "@angular/compiler-cli": "~8.2.13",
     "@angular/language-service": "~8.2.13",
@@ -67,7 +67,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run format:fix && npm run lint"
+      "pre-commit": "pretty-quick --staged && npm run lint"
     }
   }
 }

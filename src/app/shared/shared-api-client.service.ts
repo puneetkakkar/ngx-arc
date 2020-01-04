@@ -3,7 +3,7 @@ import { DefaultHeaders, HttpService } from './async-services/http';
 
 @Injectable()
 @DefaultHeaders({
-	Accept: 'application/json',
-	'Content-Type': 'application/json',
+  Accept: 'application/json',
+  'Content-Type': 'application/json',
 })
 export class SharedApiClientService extends HttpService {}

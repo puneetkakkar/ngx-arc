@@ -21,56 +21,56 @@ import { AppAdapter } from './app.adapter';
 import { DummyEffects } from './shared/store/effects/dummy.effects';
 
 @NgModule({
-	declarations: [AppComponent],
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		BrowserAnimationsModule,
-		HttpClientModule,
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
 
-		// Third Party Modules
-		DeviceModule.forRoot(),
+    // Third Party Modules
+    DeviceModule.forRoot(),
 
-		/**
-		 * StoreModule.forRoot() is imported once in the root module,
-		 * accepting reducers and meta-reducers
-		 *
-		 */
-		StoreModule.forRoot(reducers, {
-			metaReducers,
-			runtimeChecks: {
-				strictStateImmutability: true,
-				strictActionImmutability: true,
-			},
-		}),
+    /**
+     * StoreModule.forRoot() is imported once in the root module,
+     * accepting reducers and meta-reducers
+     *
+     */
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      },
+    }),
 
-		/**
-		 * Store devtools instrument the store retaining past versions of state
-		 * and recalculating new states. This enables powerful time-travel
-		 * debugging.
-		 *
-		 * To use the debugger, install the Redux Devtools extension for either
-		 * Chrome or Firefox
-		 *
-		 */
-		!environment.production ? StoreDevtoolsModule.instrument() : [],
+    /**
+     * Store devtools instrument the store retaining past versions of state
+     * and recalculating new states. This enables powerful time-travel
+     * debugging.
+     *
+     * To use the debugger, install the Redux Devtools extension for either
+     * Chrome or Firefox
+     *
+     */
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
 
-		/**
-		 * Effect Modules that are loaded when application starts
-		 */
-		EffectsModule.forRoot([NetworkEffects, DummyEffects]),
+    /**
+     * Effect Modules that are loaded when application starts
+     */
+    EffectsModule.forRoot([NetworkEffects, DummyEffects]),
 
-		/**
-		 * Core module contains providers for the singleton services you
-		 * load when the application starts.
-		 *
-		 * https://angular.io/guide/ngmodule-faq#what-kinds-of-modules-should-i-have-and-how-should-i-use-them
-		 */
+    /**
+     * Core module contains providers for the singleton services you
+     * load when the application starts.
+     *
+     * https://angular.io/guide/ngmodule-faq#what-kinds-of-modules-should-i-have-and-how-should-i-use-them
+     */
 
-		CoreModule,
-		SharedModule,
-	],
-	providers: [AppSandbox, AppApiClientService, AppAdapter],
-	bootstrap: [AppComponent],
+    CoreModule,
+    SharedModule,
+  ],
+  providers: [AppSandbox, AppApiClientService, AppAdapter],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
