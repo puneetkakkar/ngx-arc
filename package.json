@@ -1,5 +1,6 @@
 {
   "name": "ng-boilerplate",
+  "author": "Puneet Kakkar",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -10,12 +11,20 @@
     "e2e": "ng e2e",
     "format:fix": "prettier --write '{src,e2e}/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
     "remove:dist": "rimraf dist",
-    "build:prod": "npm run remove:dist && npm run -- build --configuration production",
-    "build:stage": "npm run remove:dist && npm run -- build --configuration staging",
-    "build:dev": "npm run remove:dist && npm run build --configuration dev",
-    "serve:prod": "ng serve --configuration production",
-    "serve:stage": "ng serve --configuration staging",
-    "serve:dev": "ng serve --configuration dev"
+    "build:client:prod": "yarn remove:dist && yarn build --configuration production",
+    "build:client:stage": "yarn remove:dist && yarn build --configuration staging",
+    "build:client:dev": "yarn remove:dist && yarn build --configuration dev",
+    "build:prod": "yarn remove:dist && yarn build:client-and-server-bundles:prod && yarn compile:server",
+    "build:stage": "yarn remove:dist && yarn build:client-and-server-bundles:staging && yarn compile:server",
+    "serve:client:prod": "ng serve --configuration production",
+    "serve:client:stage": "ng serve --configuration staging",
+    "serve:client:dev": "ng serve --configuration dev",
+    "compile:server": "webpack --config webpack.server.config.js --progress --colors",
+    "serve:ssr": "node dist/server",
+    "build:ssr": "yarn build:client-and-server-bundles && yarn compile:server",
+    "build:client-and-server-bundles:prod": "yarn build:client:prod && ng run ng-boilerplate:server:production --bundleDependencies all",
+    "build:client-and-server-bundles:staging": "yarn build:client:stage && ng run ng-boilerplate:server:staging --bundleDependencies all",
+    "universal" : "yarn build:ssr && yarn serve:ssr"
   },
   "private": true,
   "dependencies": {
@@ -28,10 +37,14 @@
     "@angular/forms": "^8.2.14",
     "@angular/platform-browser": "^8.2.14",
     "@angular/platform-browser-dynamic": "^8.2.14",
+    "@angular/platform-server": "^8.2.14",
     "@angular/router": "^8.2.14",
     "@ngrx/effects": "^8.6.0",
     "@ngrx/store": "^8.6.0",
+    "@nguniversal/express-engine": "^8.2.6",
+    "@nguniversal/module-map-ngfactory-loader": "^8.2.6",
     "@ngx-toolkit/device": "^8.0.0",
+    "express": "^4.15.2",
     "rimraf": "^3.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
@@ -44,6 +57,7 @@
     "@angular/language-service": "^8.2.14",
     "@ngrx/schematics": "^8.6.0",
     "@ngrx/store-devtools": "^8.6.0",
+    "@types/express": "^4.17.0",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
@@ -59,10 +73,12 @@
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
     "protractor": "~5.4.0",
+    "ts-loader": "^5.2.0",
     "ts-node": "~7.0.0",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "~3.5.3"
+    "typescript": "~3.5.3",
+    "webpack-cli": "^3.1.0"
   },
   "husky": {
     "hooks": {
