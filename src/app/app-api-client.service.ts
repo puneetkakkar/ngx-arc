@@ -9,7 +9,7 @@ import { Adapter, DefaultHeaders, GET, HttpService } from './core/async-services
   'Content-Type': 'application/json',
 })
 export class AppApiClientService extends HttpService {
-  @GET('/employees')
+  @GET('/todos/1')
   @Adapter(AppAdapter.dummyAdapter)
   public getDummyData(): Observable<never> {
     return of();

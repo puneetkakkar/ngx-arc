@@ -1,8 +1,9 @@
 export const environment = {
   production: false,
+  hmr: false,
 
   api: {
-    baseUrl: 'http://dummy.restapiexample.com/api/v1',
+    baseUrl: 'https://jsonplaceholder.typicode.com',
   },
 
   json: {},

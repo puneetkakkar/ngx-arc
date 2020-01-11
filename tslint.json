@@ -47,6 +47,7 @@
     "template-no-negated-async": true,
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
+    "no-string-literal": false,
     "extends": ["tslint:latest", "tslint-config-prettier"]
   },
   "rulesDirectory": ["codelyzer"]
