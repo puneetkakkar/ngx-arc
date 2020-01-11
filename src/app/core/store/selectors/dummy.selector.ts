@@ -6,7 +6,4 @@ export const dummyEmployeesSuccess = (state: DummyState) => state.dummyEmployees
 export const dummyEmployeesFailed = (state: DummyState) => state.dummyEmployees.error;
 
 export const getDummyState = createFeatureSelector<DummyState>('dummy');
-export const dummyEmployees = createSelector(
-  getDummyState,
-  dummyEmployeesSuccess,
-);
+export const dummyEmployees = createSelector(getDummyState, dummyEmployeesSuccess);

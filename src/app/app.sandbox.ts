@@ -1,14 +1,14 @@
 import { Inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Device, DEVICE } from '@ngx-toolkit/device';
-import { Sandbox } from './shared/sandbox/base.sandbox';
-import * as store from './shared/store';
-import { startOnlineOfflineCheck } from './shared/store/actions/network.actions';
-import { loadDummyData } from './shared/store/actions/dummy.actions';
-import { getIsOnline, dummyEmployees } from './shared/store/selectors';
+import { BaseSandbox } from './core/sandbox/base.sandbox';
+import * as store from './core/store';
+import { loadDummyData } from './core/store/actions/dummy.actions';
+import { startOnlineOfflineCheck } from './core/store/actions/network.actions';
+import { dummyEmployees, getIsOnline } from './core/store/selectors';
 
 @Injectable()
-export class AppSandbox extends Sandbox {
+export class AppSandbox extends BaseSandbox {
   public isOnline$ = this.appState$.select(getIsOnline);
   public dummyEmployees$ = this.appState$.select(dummyEmployees);
 

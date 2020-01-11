@@ -18,7 +18,7 @@ export enum OSType {
   IOS = 'ios',
 }
 
-export abstract class Sandbox implements OnDestroy {
+export abstract class BaseSandbox implements OnDestroy {
   protected subscriptions: Array<Subscription> = [];
 
   constructor(protected appState$: Store<store.AppState>, @Inject(DEVICE) private device: Device) {

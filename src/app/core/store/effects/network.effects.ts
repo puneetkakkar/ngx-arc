@@ -3,8 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { fromEvent, merge, Observable, of } from 'rxjs';
 import { concatMap, map, mapTo } from 'rxjs/operators';
-import { AppApiClientService } from 'src/app/app-api-client.service';
 import { setIsOnline, startOnlineOfflineCheck } from '../actions/network.actions';
+import { AppApiClientService } from '../../../app-api-client.service';
 
 @Injectable()
 export class NetworkEffects {

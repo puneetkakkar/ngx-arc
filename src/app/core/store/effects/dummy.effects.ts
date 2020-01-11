@@ -3,8 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { catchError, filter, map, switchMap } from 'rxjs/operators';
-import { AppApiClientService } from 'src/app/app-api-client.service';
 import { dummyDataFail, dummyDataSuccess, loadDummyData } from '../actions/dummy.actions';
+import { AppApiClientService } from '../../../app-api-client.service';
 
 @Injectable()
 export class DummyEffects {

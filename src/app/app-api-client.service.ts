@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { AppAdapter } from './app.adapter';
-import { Adapter, DefaultHeaders, GET, HttpService } from './shared/async-services/http';
-import { of, Observable } from 'rxjs';
+import { Adapter, DefaultHeaders, GET, HttpService } from './core/async-services/http';
 
 @Injectable()
 @DefaultHeaders({
