@@ -940,13 +940,6 @@
   dependencies:
     tslib "^1.9.0"
 
-"@ngxs/hmr-plugin@^3.6.0":
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/@ngxs/hmr-plugin/-/hmr-plugin-3.6.0.tgz#4b7320e1892fe04fb1dfb39219d78d2a8152dc43"
-  integrity sha512-H0pXkfS3XTABkox5CqYH3rdPWDBZ4jDcsGOys0YQwl7gy2xDv7h9wNlNpYmOVABJWwHEH0kjmeapxkUp1R5aLg==
-  dependencies:
-    tslib "^1.9.0"
-
 "@schematics/angular@8.3.22":
   version "8.3.22"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-8.3.22.tgz#fab009312bd3d50115332f2c41a92e15744ac09f"
