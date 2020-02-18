@@ -18,5 +18,4 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     'angular/document-service': 'off',
   },
-  exclude: ['./server.ts'],
 };
