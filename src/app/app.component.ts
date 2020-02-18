@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { AppSandbox } from './app.sandbox';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { AppSandbox } from './app.sandbox';
 
 @Component({
   selector: 'app-root',
@@ -25,13 +24,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.appSandbox.getConnectionStatus();
+
     this.appSandbox.getDummyData();
 
-    this.$dummyEmployees
-      .pipe(filter(employees => typeof employees !== 'undefined'))
-      .subscribe(employees => {
-        console.log('component', employees);
-      });
+    this.$dummyEmployees.pipe(filter(employees => typeof employees !== 'undefined')).subscribe(employees => {
+      console.log('component', employees);
+    });
   }
 
   ngOnDestroy() {

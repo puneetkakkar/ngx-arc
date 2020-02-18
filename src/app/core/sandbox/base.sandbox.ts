@@ -22,7 +22,11 @@ export abstract class BaseSandbox implements OnDestroy {
   protected subscriptions: Array<Subscription> = [];
 
   constructor(protected appState$: Store<store.AppState>, @Inject(DEVICE) private device: Device) {
-    this.registerEvents();
+    /**
+     * Use Following function to register events
+     * to access globally
+     */
+    // this.registerEvents();
   }
 
   public getDeviceType(): string {
@@ -49,5 +53,5 @@ export abstract class BaseSandbox implements OnDestroy {
   /**
    * Subscribes to events
    */
-  private registerEvents(): void {}
+  // private registerEvents(): void {}
 }

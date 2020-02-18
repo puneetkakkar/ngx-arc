@@ -12,10 +12,7 @@ export class AppSandbox extends BaseSandbox {
   public isOnline$ = this.appState$.select(getIsOnline);
   public dummyEmployees$ = this.appState$.select(dummyEmployees);
 
-  constructor(
-    protected appState$: Store<store.AppState>,
-    @Inject(DEVICE) private deviceDetector: Device,
-  ) {
+  constructor(protected appState$: Store<store.AppState>, @Inject(DEVICE) private deviceDetector: Device) {
     super(appState$, deviceDetector);
   }
 

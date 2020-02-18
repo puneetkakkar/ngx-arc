@@ -6,15 +6,15 @@ export interface NetworkState {
 }
 
 const initialState: NetworkState = {
-  isOnline: navigator.onLine,
+  isOnline: false,
 };
-
-const setIsOnlineReducerMap = (state: NetworkState, { payload }) => handleIsOnline(state, payload);
 
 const handleIsOnline = (state: NetworkState, payload: boolean): NetworkState => ({
   ...state,
   isOnline: payload,
 });
+
+const setIsOnlineReducerMap = (state: NetworkState, { payload }) => handleIsOnline(state, payload);
 
 const networkReducerMap = createReducer(initialState, on(setIsOnline, setIsOnlineReducerMap));
 

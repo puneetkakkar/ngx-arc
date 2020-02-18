@@ -25,8 +25,16 @@ const loadDummyDataReducerMap = (state: DummyState) => ({
   },
 });
 
-const dummyDataSuccessReducerMap = (state: DummyState, { payload }) =>
-  handleDummyDataSuccess(state, payload);
+const handleDummyDataSuccess = (state: DummyState, payload: object): DummyState => ({
+  ...state,
+  dummyEmployees: {
+    ...state.dummyEmployees,
+    loading: false,
+    data: payload,
+  },
+});
+
+const dummyDataSuccessReducerMap = (state: DummyState, { payload }) => handleDummyDataSuccess(state, payload);
 
 const dummyDataFailReducerMap = (state: DummyState, { payload }) => ({
   ...state,
@@ -34,15 +42,6 @@ const dummyDataFailReducerMap = (state: DummyState, { payload }) => ({
     ...state.dummyEmployees,
     loading: false,
     error: payload,
-  },
-});
-
-const handleDummyDataSuccess = (state: DummyState, payload: object): DummyState => ({
-  ...state,
-  dummyEmployees: {
-    ...state.dummyEmployees,
-    loading: false,
-    data: payload,
   },
 });
 

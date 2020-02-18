@@ -16,10 +16,7 @@ export class HttpResponseHandlerService {
    * @param source - error source
    * @returns - {ErrorObservable} error observable
    */
-  public onCatch(
-    response: HttpErrorResponse,
-    source: Observable<HttpRequest<string>>,
-  ): Observable<any> {
+  public onCatch(response: HttpErrorResponse, source: Observable<HttpRequest<string>>): Observable<any> {
     switch (response.status) {
       case 400:
         this.handleBadRequest(response);
@@ -41,9 +38,9 @@ export class HttpResponseHandlerService {
         this.handleGone(response);
         break;
 
-      case 500:
-        this.handleServerError();
-        break;
+      // case 500:
+      //   this.handleServerError();
+      //   break;
 
       default:
         break;
@@ -102,14 +99,14 @@ export class HttpResponseHandlerService {
   /**
    * Shows errors when server response status is 500
    */
-  private handleServerError(): void {}
+  // private handleServerError(): void {}
 
   /**
    * Parses server response
    *
    * param response
    */
-  private handleErrorMessages(response: any): void {}
+  // private handleErrorMessages(response: any): void {}
 
   /**
    * Returns relative url from the absolute path

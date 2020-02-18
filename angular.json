@@ -175,13 +175,6 @@
             "scripts": []
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["tsconfig.app.json", "tsconfig.spec.json", "e2e/tsconfig.json"],
-            "exclude": ["**/node_modules/**", "server.ts"]
-          }
-        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
@@ -216,7 +209,7 @@
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.staging.ts"
+                  "with": "src/environments/environment.stage.ts"
                 }
               ],
               "sourceMap": false,
@@ -234,6 +227,10 @@
             "production": {
               "browserTarget": "ng-boilerplate:build:production",
               "serverTarget": "ng-boilerplate:server:production"
+            },
+            "staging": {
+              "browserTarget": "ng-boilerplate:build:staging",
+              "serverTarget": "ng-boilerplate:server:staging"
             }
           }
         },
@@ -242,9 +239,7 @@
           "options": {
             "browserTarget": "ng-boilerplate:build:production",
             "serverTarget": "ng-boilerplate:server:production",
-            "routes": [
-              "/"
-            ]
+            "routes": ["/"]
           },
           "configurations": {
             "production": {}

@@ -45,32 +45,32 @@ export function DefaultHeaders(headers: any) {
  * GET method
  * @param string url - resource url of the method
  */
-export let GET = methodBuilder(RequestMethod.GET);
+export const GET = methodBuilder(RequestMethod.GET);
 /**
  * POST method
  * @param string url - resource url of the method
  */
-export let POST = methodBuilder(RequestMethod.POST);
+export const POST = methodBuilder(RequestMethod.POST);
 /**
  * PUT method
  * @param string url - resource url of the method
  */
-export let PUT = methodBuilder(RequestMethod.PUT);
+export const PUT = methodBuilder(RequestMethod.PUT);
 /**
  * DELETE method
  * @param string url - resource url of the method
  */
-export let DELETE = methodBuilder(RequestMethod.DELETE);
+export const DELETE = methodBuilder(RequestMethod.DELETE);
 /**
  * HEAD method
  * @param string url - resource url of the method
  */
-export let HEAD = methodBuilder(RequestMethod.HEAD);
+export const HEAD = methodBuilder(RequestMethod.HEAD);
 /**
  * PATCH method
  * @param string url - resource url of the method
  */
-export let PATCH = methodBuilder(RequestMethod.PATCH);
+export const PATCH = methodBuilder(RequestMethod.PATCH);
 
 /**
  * Set custom headers for a REST method
@@ -125,19 +125,19 @@ export function Adapter(adapterFn: (...args: any[]) => any) {
  * Path variable of a method's url, type: string
  * @param string key - path key to bind value
  */
-export let Path = paramBuilder('Path');
+export const Path = paramBuilder('Path');
 /**
  * Query value of a method's url, type: string
  * @param string key - query key to bind value
  */
-export let Query = paramBuilder('Query')('Query');
+export const Query = paramBuilder('Query')('Query');
 /**
  * Body of a REST method, type: key-value pair object
  * Only one body per method!
  */
-export let Body = paramBuilder('Body')('Body');
+export const Body = paramBuilder('Body')('Body');
 /**
  * Custom header of a REST method, type: string
  * @param string key - header key to bind value
  */
-export let Header = paramBuilder('Header');
+export const Header = paramBuilder('Header');
